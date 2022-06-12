@@ -1,0 +1,28 @@
+name: Lighthouse
+version: '${project.version}'
+main: net.devemperor.lighthouse.main.Main
+api-version: 1.19
+authors: [ DevEmperor ]
+description: Lighthouse Server
+commands:
+  sethome:
+    description: Set your home
+    usage: §7[§6Server§7] §4 /sethome
+  home:
+    description: Teleport to your home
+    usage: §7[§6Server§7] §4 /home [cancel]
+  loc:
+    description: Save locations and share them with others
+    usage: §7[§6Server§7] §4 /loc <add/remove/list/share> [loc-name] [player-name]
+  reward:
+    description: Get daily experience as a reward for playing on this server
+    usage: §7[§6Server§7] §4 /reward
+  whereis:
+    description: Get a compass that leads you to <player>
+    usage: §7[§6Server§7] §4 /whereis <player>
+  donate:
+    description: Donate experience to a player
+    usage: §7[§6Server§7] §4 /donate <player> <amount>
+  glow:
+    description: Make <player> visible for <seconds> seconds
+    usage: §7[§6Server§7] §4 /glow <player> <seconds>
