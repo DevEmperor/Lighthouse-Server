@@ -26,8 +26,8 @@ public class Compass implements CommandExecutor, Listener {
 
     private final Main plugin;
     private int id;
-    static File tracking = new File("plugins/Lighthouse", "tracking.yml");
-    public static FileConfiguration cfg = YamlConfiguration.loadConfiguration(tracking);
+    File tracking = new File("plugins/Lighthouse", "tracking.yml");
+    FileConfiguration cfg = YamlConfiguration.loadConfiguration(tracking);
 
     public Compass(Main plugin) {
         this.plugin = plugin;

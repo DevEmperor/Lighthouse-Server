@@ -19,8 +19,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class DailyRewards implements CommandExecutor {
 
-    static File rewards = new File("plugins/Lighthouse", "rewards.yml");
-    public static FileConfiguration cfg = YamlConfiguration.loadConfiguration(rewards);
+    File rewards = new File("plugins/Lighthouse", "rewards.yml");
+    FileConfiguration cfg = YamlConfiguration.loadConfiguration(rewards);
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
