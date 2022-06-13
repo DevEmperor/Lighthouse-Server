@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -13,6 +14,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import net.devemperor.lighthouse.util.Util;
+import org.bukkit.event.player.PlayerExpChangeEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class DailyRewards implements CommandExecutor {
@@ -35,8 +37,9 @@ public class DailyRewards implements CommandExecutor {
                     if (exp != 100) {
                         exp = exp / 10;
                     }
-                    
+
                     player.giveExp(exp);
+                    Bukkit.getPluginManager().callEvent(new PlayerExpChangeEvent(player, exp));
                     sender.sendMessage(Util.PREFIX + ChatColor.GREEN + "You got " + ChatColor.AQUA + exp + ChatColor.GREEN + " experience!");
                     try {
                         cfg.save(rewards);

@@ -1,6 +1,5 @@
 package net.devemperor.lighthouse.main;
 
-import net.devemperor.lighthouse.util.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
