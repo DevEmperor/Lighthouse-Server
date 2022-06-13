@@ -15,6 +15,7 @@ import net.devemperor.lighthouse.util.Util;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
+import java.io.IOException;
 
 public class Glow implements CommandExecutor {
 
@@ -32,11 +33,13 @@ public class Glow implements CommandExecutor {
                     } else if (cfg.getBoolean(dest.getUniqueId() + "." + ".isGlowing")) {
                         dest.removePotionEffect(PotionEffectType.GLOWING);
                         cfg.set(dest.getUniqueId() + "." + ".isGlowing", false);
+                        try { cfg.save(glow); } catch (IOException e) { e.printStackTrace(); }
                         sender.sendMessage(Util.PREFIX + ChatColor.GOLD + dest.getName() + ChatColor.GREEN + " is not glowing anymore!");
                         return true;
                     } else {
                         dest.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, Integer.MAX_VALUE, 1));
                         cfg.set(dest.getUniqueId() + "." + ".isGlowing", true);
+                        try { cfg.save(glow); } catch (IOException e) { e.printStackTrace(); }
                         sender.sendMessage(Util.PREFIX + ChatColor.GOLD + dest.getName() + ChatColor.GREEN + " is now glowing!");
                         return true;
                     }
