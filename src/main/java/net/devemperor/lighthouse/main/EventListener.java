@@ -36,7 +36,7 @@ public class EventListener implements Listener {
         player.sendMessage(ChatColor.YELLOW + "           /reward " + ChatColor.GREEN + "Request some daily experience");
         player.sendMessage(ChatColor.YELLOW + "           /whereis <player> " + ChatColor.GREEN + "Get a compass that leads you to <player>");
         player.sendMessage(ChatColor.YELLOW + "           /donate <player> <amount> " + ChatColor.GREEN + "Give experience to a player");
-        player.sendMessage(ChatColor.YELLOW + "           /glow <player> <seconds> " + ChatColor.GREEN + "Make <player> visible for <seconds> seconds");
+        player.sendMessage(ChatColor.YELLOW + "           /glow <player> " + ChatColor.GREEN + "Make <player> visible");
         e.setJoinMessage(Util.PREFIX + ChatColor.GREEN + player.getName() + " has joined...");
 
         WorldBorder.updateWorldBorder(player.getWorld());
