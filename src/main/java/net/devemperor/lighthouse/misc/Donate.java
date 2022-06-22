@@ -1,14 +1,14 @@
 package net.devemperor.lighthouse.misc;
 
+import net.devemperor.lighthouse.main.ScoreboardWorld;
+import net.devemperor.lighthouse.main.WorldBorder;
+import net.devemperor.lighthouse.util.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import net.devemperor.lighthouse.util.Util;
-import org.bukkit.event.player.PlayerExpChangeEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class Donate implements CommandExecutor {
@@ -37,8 +37,11 @@ public class Donate implements CommandExecutor {
                             if (amount > player.getTotalExperience()) {
                                 sender.sendMessage(Util.PREFIX + ChatColor.RED + "You haven't got enough experience!");
                             } else {
-                                Bukkit.getPluginManager().callEvent(new PlayerExpChangeEvent(dest, amount));
-                                Bukkit.getPluginManager().callEvent(new PlayerExpChangeEvent(player, -amount));
+                                // cannot call PlayerExpChangeEvent directly cause the -amount would be ignored
+                                ScoreboardWorld.cfg.set(player.getUniqueId() + "." + ".exp", ScoreboardWorld.cfg.getLong(player.getUniqueId() + "." + ".exp") - amount);
+                                ScoreboardWorld.cfg.set(dest.getUniqueId() + "." + ".exp", ScoreboardWorld.cfg.getLong(dest.getUniqueId() + "." + ".exp") + amount);
+                                WorldBorder.updateWorldBorder(player.getWorld());
+                                
                                 player.giveExp(-amount);
                                 dest.giveExp(amount);
                                 sender.sendMessage(Util.PREFIX + ChatColor.GREEN + "You donated " + ChatColor.AQUA + amount

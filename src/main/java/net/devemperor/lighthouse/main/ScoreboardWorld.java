@@ -35,10 +35,7 @@ public class ScoreboardWorld implements Listener {
     public void onJoin(PlayerJoinEvent e) {
         Player player = e.getPlayer();
 
-        long exp = cfg.getLong(player.getUniqueId() + "." + ".exp");
-        int kills = cfg.getInt(player.getUniqueId() + "." + ".kills");
-
-        updateScoreboard(player, exp, kills, getTime(player));
+        updateScoreboard(player);
     }
 
     @EventHandler
@@ -64,8 +61,6 @@ public class ScoreboardWorld implements Listener {
             for (Player player : Bukkit.getOnlinePlayers()) {
                 int hours = cfg.getInt(player.getUniqueId() + "." + ".hours");
                 int minutes = cfg.getInt(player.getUniqueId() + "." + ".minutes");
-                long exp = cfg.getLong(player.getUniqueId() + "." + ".exp");
-                int kills = cfg.getInt(player.getUniqueId() + "." + ".kills");
 
                 if (seconds == 58) {
                     seconds = 0;
@@ -88,12 +83,16 @@ public class ScoreboardWorld implements Listener {
                     seconds+=2;
                 }
 
-                updateScoreboard(player, exp, kills, getTime(player));
+                updateScoreboard(player);
             }
         }, 20*2, 20*2);
     }
 
-    private void updateScoreboard(Player player, long exp, int kills, String time) {
+    private void updateScoreboard(Player player) {
+        long total_exp = cfg.getLong(player.getUniqueId() + "." + ".exp");
+        int kills = cfg.getInt(player.getUniqueId() + "." + ".kills");
+        String time = getTime(player);
+        
         Scoreboard board = Bukkit.getScoreboardManager().getNewScoreboard();
 
         Objective obj = board.registerNewObjective("scoreboard", "criteria", "Lighthouse-Server");
@@ -105,8 +104,8 @@ public class ScoreboardWorld implements Listener {
         Score eleven = obj.getScore(cfg.getInt(player.getUniqueId() + "." + ".hours") + " hours, "
                 + cfg.getInt(player.getUniqueId() + "." + ".minutes") + " minutes");
         Score ten = obj.getScore("  ");
-        Score nine = obj.getScore("§a§lTotal experience:");
-        Score eight = obj.getScore(String.format("%,d", exp) + " experience");
+        Score nine = obj.getScore("§a§lTotal / Current experience:");
+        Score eight = obj.getScore(String.format("%,d", total_exp) + " / " + String.format("%,d", player.getTotalExperience()) + " experience");
         Score seven = obj.getScore("   ");
         Score six = obj.getScore("§a§lTotal kills:");
         Score five = obj.getScore(kills + " kills");

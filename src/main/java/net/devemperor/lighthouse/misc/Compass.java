@@ -101,7 +101,11 @@ public class Compass implements CommandExecutor, Listener {
 
     private void stop(int id, Player player) {
         Bukkit.getScheduler().cancelTask(id);
-        player.setCompassTarget(Objects.requireNonNull(player.getBedSpawnLocation()));
+        try {
+            player.setCompassTarget(Objects.requireNonNull(player.getBedSpawnLocation()));
+        } catch (NullPointerException e) { // if player hasn't slept yet
+            player.setCompassTarget(Objects.requireNonNull(player.getWorld().getSpawnLocation()));
+        }
         player.getInventory().remove(Material.COMPASS);
         cfg.set(player.getUniqueId() + "." + ".tracking", false);
         try {

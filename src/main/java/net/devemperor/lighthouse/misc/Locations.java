@@ -77,13 +77,13 @@ public class Locations implements CommandExecutor, TabCompleter {
                         }
                     } else if (args[0].equalsIgnoreCase("list")) {
                         if (args.length == 1) {
-                            Object[] names = null;
+                            Object[] names;
                             try {
                                 names = cfg.getConfigurationSection(player.getUniqueId().toString()).getKeys(false).toArray();
                             } catch (NullPointerException e) {
                                 player.sendMessage(Util.PREFIX + ChatColor.RED + "You haven't saved any locations yet!");
+                                return true;
                             }
-                            assert names != null;
                             if (names.length != 0) {
                                 for (int i = 0; i < names.length; i++) {
                                     int x = cfg.getInt(player.getUniqueId() + "." + names[i] + "." + ".x");
