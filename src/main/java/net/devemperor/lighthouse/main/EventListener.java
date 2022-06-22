@@ -82,6 +82,8 @@ public class EventListener implements Listener {
                 + ChatColor.GREEN + ", Z = " + ChatColor.DARK_AQUA + next.getBlockZ() + ChatColor.GREEN + " !");
         e.getDrops().clear();
         e.setDroppedExp(0);
+
+        ScoreboardWorld.cfg.set(player.getUniqueId() + "." + ".deaths", ScoreboardWorld.cfg.getInt(player.getUniqueId() + "." + ".deaths") + 1);
     }
 
     @EventHandler
