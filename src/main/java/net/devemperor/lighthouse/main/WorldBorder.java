@@ -11,8 +11,9 @@ public class WorldBorder implements Listener {
         int total_size = 0;
         for (OfflinePlayer player : Bukkit.getOfflinePlayers()) {
             total_size += ScoreboardWorld.cfg.getLong(player.getUniqueId() + "." + ".exp");
+            total_size -= ScoreboardWorld.cfg.getInt(player.getUniqueId() + "." + ".deaths") * 5;
         }
-        return total_size / 5 + 10;
+        return total_size / 5 + 15;
     }
 
     public static void updateWorldBorder(World world) {

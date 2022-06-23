@@ -91,7 +91,7 @@ public class ScoreboardWorld implements Listener {
     private void updateScoreboard(Player player) {
         long total_exp = cfg.getLong(player.getUniqueId() + "." + ".exp");
         int kills = cfg.getInt(player.getUniqueId() + "." + ".kills");
-        int deaths = cfg.getInt(player.getUniqueId() + "." + "deaths");
+        int deaths = cfg.getInt(player.getUniqueId() + "." + ".deaths");
         String time = getTime(player);
         
         Scoreboard board = Bukkit.getScoreboardManager().getNewScoreboard();
