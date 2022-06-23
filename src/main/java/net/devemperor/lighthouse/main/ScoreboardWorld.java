@@ -100,31 +100,23 @@ public class ScoreboardWorld implements Listener {
         obj.setDisplayName("§6§n§lLighthouse-Server");
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
 
-        Score eighteen = obj.getScore(" ");
-        Score seventeen = obj.getScore("§a§lPlaytime:");
-        Score sixteen = obj.getScore(cfg.getInt(player.getUniqueId() + "." + ".hours") + " hours, "
+        Score fourteen = obj.getScore(" ");
+        Score thirteen = obj.getScore("§a§lTotal experience:");
+        Score twelve = obj.getScore(String.format("%,d", total_exp) + " experience");
+        Score eleven = obj.getScore("§a§lCurrent experience:");
+        Score ten = obj.getScore(String.format("%,d", player.getTotalExperience()) + " experience");
+        Score nine = obj.getScore("  ");
+        Score eight = obj.getScore("§a§lKills / Deaths:");
+        Score seven = obj.getScore(kills + " / " + deaths);
+        Score six = obj.getScore("   ");
+        Score five = obj.getScore("§a§lBorder size:");
+        Score four = obj.getScore(WorldBorder.getBorderSize() + " blocks");
+        Score three = obj.getScore("    ");
+        Score two = obj.getScore("§a§lPlaytime:");
+        Score one = obj.getScore(cfg.getInt(player.getUniqueId() + "." + ".hours") + " hours, "
                 + cfg.getInt(player.getUniqueId() + "." + ".minutes") + " minutes");
-        Score fifteen = obj.getScore("  ");
-        Score fourteen = obj.getScore("§a§lTotal experience:");
-        Score thirteen = obj.getScore(String.format("%,d", total_exp) + " experience");
-        Score twelve = obj.getScore("§a§lCurrent experience:");
-        Score eleven = obj.getScore(String.format("%,d", player.getTotalExperience()) + " experience");
-        Score ten = obj.getScore("   ");
-        Score nine = obj.getScore("§a§lTotal kills:");
-        Score eight = obj.getScore(kills + " kills");
-        Score seven = obj.getScore("    ");
-        Score six = obj.getScore("§a§lTotal deaths:");
-        Score five = obj.getScore(deaths + " deaths");
-        Score four = obj.getScore("     ");
-        Score three = obj.getScore("§a§lBorder size:");
-        Score two = obj.getScore(WorldBorder.getBorderSize() + " blocks");
-        Score one = obj.getScore("      ");
         Score zero = obj.getScore("§eIt is " + time);
 
-        eighteen.setScore(18);
-        seventeen.setScore(17);
-        sixteen.setScore(16);
-        fifteen.setScore(15);
         fourteen.setScore(14);
         thirteen.setScore(13);
         twelve.setScore(12);
