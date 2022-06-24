@@ -53,6 +53,8 @@ public class EventListener implements Listener {
         e.setDeathMessage(Util.PREFIX + ChatColor.DARK_RED + e.getEntity().getName() + " has died! R.I.P.");
         Player player = e.getEntity();
 
+        ScoreboardWorld.cfg.set(player.getUniqueId() + "." + ".deaths", ScoreboardWorld.cfg.getInt(player.getUniqueId() + "." + ".deaths") + player.getLevel());
+
         List <ItemStack> inv = e.getDrops();
 
         Location next = player.getLocation();
@@ -82,8 +84,6 @@ public class EventListener implements Listener {
                 + ChatColor.GREEN + ", Z = " + ChatColor.DARK_AQUA + next.getBlockZ() + ChatColor.GREEN + " !");
         e.getDrops().clear();
         e.setDroppedExp(0);
-
-        ScoreboardWorld.cfg.set(player.getUniqueId() + "." + ".deaths", ScoreboardWorld.cfg.getInt(player.getUniqueId() + "." + ".deaths") + 1);
     }
 
     @EventHandler
