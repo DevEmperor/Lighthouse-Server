@@ -52,6 +52,7 @@ public class Homes implements CommandExecutor, TabCompleter {
                 cfg.set(player.getUniqueId() + "." + ".z", loc.getZ());
                 cfg.set(player.getUniqueId() + "." + ".yaw", loc.getYaw());
                 cfg.set(player.getUniqueId() + "." + ".pitch", loc.getPitch());
+                cfg.set(player.getUniqueId() + "." + ".world", player.getWorld().getName());
                 try {
                     cfg.save(homes);
                 } catch (IOException e) {
@@ -80,8 +81,9 @@ public class Homes implements CommandExecutor, TabCompleter {
                         double z = cfg.getDouble(player.getUniqueId() + "." + ".z");
                         double yaw = cfg.getDouble(player.getUniqueId() + "." + ".yaw");
                         double pitch = cfg.getDouble(player.getUniqueId() + "." + ".pitch");
+                        String world = cfg.getString(player.getUniqueId() + "." + ".world");
 
-                        Location loc = new Location(player.getWorld(), x, y, z);
+                        Location loc = new Location(plugin.getServer().getWorld(world), x, y, z);
                         loc.setYaw((float) yaw);
                         loc.setPitch((float) pitch);
 
