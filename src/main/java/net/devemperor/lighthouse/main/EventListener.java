@@ -18,12 +18,13 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 
+import java.io.IOException;
 import java.util.List;
 
 public class EventListener implements Listener {
 
     @EventHandler
-    public void onJoin(PlayerJoinEvent e) {
+    public void onJoin(PlayerJoinEvent e) throws IOException {
         Player player = e.getPlayer();
 
         player.sendTitle(ChatColor.GREEN + "Welcome to the " + ChatColor.GOLD + "Lighthouse-Server!",
@@ -40,12 +41,16 @@ public class EventListener implements Listener {
         e.setJoinMessage(Util.PREFIX + ChatColor.GREEN + player.getName() + " has joined...");
 
         WorldBorder.updateWorldBorder(player.getWorld());
+
+        Util.sendPlayerWebhook();
     }
 
     @EventHandler
-    public void onQuit(PlayerQuitEvent e) {
+    public void onQuit(PlayerQuitEvent e) throws IOException {
         Player player = e.getPlayer();
         e.setQuitMessage(Util.PREFIX + ChatColor.RED + player.getName() + " has left...");
+
+        Util.sendPlayerWebhook();
     }
 
     @EventHandler
