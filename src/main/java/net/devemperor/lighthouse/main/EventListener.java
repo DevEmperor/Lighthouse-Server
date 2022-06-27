@@ -58,7 +58,8 @@ public class EventListener implements Listener {
         e.setDeathMessage(Util.PREFIX + ChatColor.DARK_RED + e.getEntity().getName() + " has died! R.I.P.");
         Player player = e.getEntity();
 
-        ScoreboardWorld.cfg.set(player.getUniqueId() + "." + ".deaths", ScoreboardWorld.cfg.getInt(player.getUniqueId() + "." + ".deaths") + player.getLevel());
+        ScoreboardWorld.cfg.set(player.getUniqueId() + "." + ".deaths", ScoreboardWorld.cfg.getInt(player.getUniqueId() + "." + ".deaths") + 1);
+        ScoreboardWorld.cfg.set(player.getUniqueId() + "." + ".lvl-lost", ScoreboardWorld.cfg.getInt(player.getUniqueId() + "." + ".lvl-lost") + player.getLevel());
 
         List <ItemStack> inv = e.getDrops();
 
